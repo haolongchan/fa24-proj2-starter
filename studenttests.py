@@ -41,25 +41,25 @@ class TestAbsLoss(unittest.TestCase):
         raise NotImplementedError("TODO")
 
         # create array0 in the data section
-        # TODO
+        array0 = t.array([0])
         # load address of `array0` into register a0
-        # TODO
+        t.input_array("a0", array0)
         # create array1 in the data section
-        # TODO
+        array1 = t.array([1])
         # load address of `array1` into register a1
-        # TODO
+        t.input_array("a1", array1)
         # set a2 to the length of the array
-        # TODO
+        a2 = len(array0)
         # create a result array in the data section (fill values with -1)
-        # TODO
+        array3 = t.array([2])
         # load address of `array2` into register a3
-        # TODO
+        t.input_array("a2", array3)
         # call the `abs_loss` function
-        # TODO
+        t.call("abs_loss")
         # check that the result array contains the correct output
-        # TODO
+        t.chech_scalar("a0", 0)
         # check that the register a0 contains the correct output
-        # TODO
+        t.check_array("a0", [0])
         # generate the `assembly/TestAbsLoss_test_simple.s` file and run it through venus
         t.execute()
 
@@ -99,23 +99,35 @@ class TestSquaredLoss(unittest.TestCase):
 
         # TODO
         # create input arrays in the data section
+        array0 = t.array([0])
+        array1 = t.array([1])
         # TODO
         # load array addresses into argument registers
+        t.input_array("a0", array0)
+        t.input_array("a1", array1)
         # TODO
         # load array length into argument register
+        t.input_array("a2", len(array0))
         # TODO
         # create a result array in the data section (fill values with -1)
+        array_result = list()
+        for i in range(len(array0)):
+            array_result.append(-1)
         # TODO
         # load result array address into argument register
+        t.input_array("a3", array_result)
         # TODO
         # call the `squared_loss` function
+        t.call("squared_loss")
         # TODO
         # check that the result array contains the correct output
+        t.check_array(array_result, [3])
         # TODO
         # check that the register a0 contains the correct output
+        t.check_array(array0, [0])
         # TODO
         # generate the `assembly/TestSquaredLoss_test_simple.s` file and run it through venus
-        # TODO
+        t.execute()
 
     # Add other test cases if neccesary
 
@@ -152,7 +164,7 @@ class TestZeroOneLoss(unittest.TestCase):
         raise NotImplementedError("TODO")
 
         # create input arrays in the data section
-        # TODO
+        array1 = t.array([0])
         # load array addresses into argument registers
         # TODO
         # load array length into argument register
